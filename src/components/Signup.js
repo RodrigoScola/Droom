@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
@@ -29,6 +29,7 @@ export default function Signup() {
       setError('could not complete google authentication')
     }
   }
+
   const [currentUser,setCurrentUser] = useState();
 
   useEffect(() => {
@@ -85,7 +86,7 @@ export default function Signup() {
             <Button disabled={loading} onClick={AuthWithGoogle} className="btn btn-block btn-dark mt-1" type="sumbit">
               <i className="bi bi-google"></i>
             </Button>
-            {currentUser && <p>{currentUser.displayName}</p>}
+            {currentUser && <p>{currentUser.displayName}</p>} 
           </Form>
         </Card.Body>
       </Card>

@@ -12,14 +12,12 @@ import mainPage from "./Main";
 
 function App() {
   return (
-    <Container
-      className="d-flex justify-content-center"
-      style={{ minHeight: "100vh" }}
-    >
-      <div >
+    <Container className="d-flex justify-content-center">
+      <div>
         <Router>
           <AuthProvider>
-            <Switch>
+          <userContext>
+          <Switch>
               <PrivateRoute exact path="/" component={mainPage} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
               <PrivateRoute path="/dashboard" component={Dashboard} />
@@ -27,6 +25,7 @@ function App() {
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword} />
             </Switch>
+            </userContext> 
           </AuthProvider>
         </Router>
       </div>

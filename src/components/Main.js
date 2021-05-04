@@ -1,34 +1,64 @@
-import { render } from "@testing-library/react"
-import React, { useState } from "react"
-import { Card, Button, Alert } from "react-bootstrap"
-import { useAuth } from "../contexts/AuthContext"
-import PostForm from './forms/postform'
-import './css/main.css'
+import { render } from "@testing-library/react";
+import React, { useState, useEffect } from "react";
+import "./css/main.css";
+import { auth } from "../firebase";
+import ButtonPost from "./posting/buttonPost";
+import { Component } from "react";
+import paddle from './posting/paddle'
+
+
+class Paddle extends Component {
+  constructor(props) {
+      super(props);
+  }
+
+  
+  render() {
+    return <div>
+        <button className='paddle mr-2 mb-2' >hello there</button>
+    </div>;
+  }
+}
+
+
+
 
 export default function Main() {
   let clicked = false;
 
-  const { currentUser, logout } = useAuth()
- 
+  const [currentUser, setCurrentUser] = useState();
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      setCurrentUser(user);
+    });
+  }, []);
+
   return (
     <div>
-      <nav className="">
-        <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+      <nav className="bg-info">
+        <p className="text-right">
+          {currentUser && (
+            <>
+              <img src={currentUser.photoURL} />
+              <p>{currentUser.displayName}</p>
+            </>
+          )}
+        </p>
       </nav>
-     
-      
-      <div classname='paddlebox'> 
-      <button className='paddle mr-2 mb-2' >hello thre</button>
-      <button className='paddle mr-2 mb-2' >hello thre</button>
-      <button className='paddle mr-2 mb-2' >hello thre</button>
-      <button className='paddle mr-2 mb-2' >hello thre</button>
-      <button className='paddle mr-2 mb-2' >hello thre</button>
-      <button className='paddle mr-2 mb-2' >hello thre</button>
-      <div>
-      <Button onClick={clicked = true} className='inputBox btn-warning btn-block mt-3'>Post Music</Button>
-      </div>
-      <div>{clicked == false ? null : <PostForm />}</div>
+
+      <div classname="paddlebox">
+        <button className="paddle mr-2 mb-2">hello thre</button>
+        <button className="paddle mr-2 mb-2">hello thre</button>
+        <button className="paddle mr-2 mb-2">hello thre</button>
+        <button className="paddle mr-2 mb-2">hello thre</button>
+        <button className="paddle mr-2 mb-2">hello thre</button>
+        <button className="paddle mr-2 mb-2">hello thre</button>
+        <Paddle />
+        <div>
+          <ButtonPost />
+        </div>
       </div>
     </div>
-  )
+  );
 }
