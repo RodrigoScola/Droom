@@ -4,24 +4,22 @@ import "./css/main.css";
 import { auth } from "../firebase";
 import ButtonPost from "./posting/buttonPost";
 import { Component } from "react";
-import paddle from './posting/paddle'
-
+import paddle from "./posting/paddle";
+import {Sounds} from "./PadSoundTest";
 
 class Paddle extends Component {
   constructor(props) {
-      super(props);
+    super(props);
   }
 
-  
   render() {
-    return <div>
-        <button className='paddle mr-2 mb-2' >hello there</button>
-    </div>;
+    return (
+      <div>
+        <button className="paddle mr-2 mb-2">hello there</button>
+      </div>
+    );
   }
 }
-
-
-
 
 export default function Main() {
   let clicked = false;
@@ -48,13 +46,7 @@ export default function Main() {
       </nav>
 
       <div classname="paddlebox">
-        <button className="paddle mr-2 mb-2">hello thre</button>
-        <button className="paddle mr-2 mb-2">hello thre</button>
-        <button className="paddle mr-2 mb-2">hello thre</button>
-        <button className="paddle mr-2 mb-2">hello thre</button>
-        <button className="paddle mr-2 mb-2">hello thre</button>
-        <button className="paddle mr-2 mb-2">hello thre</button>
-        <Paddle />
+              <Sounds />
         <div>
           <ButtonPost />
         </div>
