@@ -5,7 +5,7 @@ import { auth } from "../firebase";
 import ButtonPost from "./posting/buttonPost";
 import { Component } from "react";
 import paddle from './posting/paddle'
-
+import {Sounds} from './PadSoundTest'
 
 class Paddle extends Component {
   constructor(props) {
@@ -48,13 +48,7 @@ export default function Main() {
       </nav>
 
       <div classname="paddlebox">
-        <button className="paddle mr-2 mb-2">hello thre</button>
-        <button className="paddle mr-2 mb-2">hello thre</button>
-        <button className="paddle mr-2 mb-2">hello thre</button>
-        <button className="paddle mr-2 mb-2">hello thre</button>
-        <button className="paddle mr-2 mb-2">hello thre</button>
-        <button className="paddle mr-2 mb-2">hello thre</button>
-        <Paddle />
+        <Sounds />
         <div>
           <ButtonPost />
         </div>
