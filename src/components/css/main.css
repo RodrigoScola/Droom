@@ -16,6 +16,15 @@
     display: flex;
     width: 70%;
     justify-content: center;
-    
-
+    margin-top: 15px;
+}
+.top-navbar {
+    display:flex;
+    padding-right:2%;
+    margin-bottom: 15px;
+}
+img {
+    border-color: rgb(174, 0, 255);
+    border-width: 1px;
+    border-radius:45%;
 }

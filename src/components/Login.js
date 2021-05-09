@@ -1,55 +1,54 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Form, Button, Card, Alert } from "react-bootstrap"
-import { useAuth } from "../contexts/AuthContext"
-import { Link, useHistory } from "react-router-dom"
-import {AuthWithGoogle} from './Signup'
-import firebase from 'firebase';
-import { auth } from "../firebase"
+import { Form, Button, Card, Alert } from "react-bootstrap";
+import { useAuth } from "../contexts/AuthContext";
+import { Link, Redirect, useHistory } from "react-router-dom";
+import { AuthWithGoogle } from "./Signup";
+import firebase from "firebase";
+import { auth } from "../firebase";
+import mainPage from "./Main";
 
 export default function Login() {
-  const emailRef = useRef()
-  const passwordRef = useRef()
-  const { login } = useAuth()
-  const [error, setError] = useState("")
-  const [loading, setLoading] = useState(false)
-  const history = useHistory()
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const { login } = useAuth();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const history = useHistory();
 
   const provider = new firebase.auth.GoogleAuthProvider();
 
   const AuthWithGoogle = () => {
     try {
-      setError('')
+      setError("");
       setLoading(true);
-      firebase.auth().signInWithPopup(provider)
-      history.push('/')
+      firebase.auth().signInWithPopup(provider);
+      history.push("/");
     } catch {
-      setError('could not complete google authentication')
+      setError("could not complete google authentication");
     }
-  }
-  const [currentUser,setCurrentUser] = useState();
+  };
+  const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
-    auth.onAuthStateChanged((user)=> {
-      setCurrentUser(user)
-    })
-  
-  }, [])
-
-
+    auth.onAuthStateChanged((user) => {
+      setCurrentUser(user);
+      return <Redirect to={{pathname:'./Main'}} />;
+    });
+  }, []);
 
   async function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
 
     try {
-      setError("")
-      setLoading(true)
-      await login(emailRef.current.value, passwordRef.current.value)
-      history.push("/")
+      setError("");
+      setLoading(true);
+      await login(emailRef.current.value, passwordRef.current.value);
+      history.push("/");
     } catch {
-      setError("Failed to log in")
+      setError("Failed to log in");
     }
 
-    setLoading(false)
+    setLoading(false);
   }
 
   return (
@@ -70,7 +69,12 @@ export default function Login() {
             <Button disabled={loading} className="w-100" type="submit">
               Log In
             </Button>
-            <Button disabled={loading} onClick={AuthWithGoogle} className="btn btn-block btn-dark mt-1" type="sumbit">
+            <Button
+              disabled={loading}
+              onClick={AuthWithGoogle}
+              className="btn btn-block btn-dark mt-1"
+              type="sumbit"
+            >
               <i className="bi bi-google"></i>
             </Button>
           </Form>
@@ -83,5 +87,5 @@ export default function Login() {
         Need an account? <Link to="/signup">Sign Up</Link>
       </div>
     </>
-  )
+  );
 }
