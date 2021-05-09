@@ -50,13 +50,7 @@ export default function Main() {
       </nav>
 
       <div classname="paddlebox">
-        <button className="paddle mr-2 mb-2">hello thre</button>
-        <button className="paddle mr-2 mb-2">hello thre</button>
-        <button className="paddle mr-2 mb-2">hello thre</button>
-        <button className="paddle mr-2 mb-2">hello thre</button>
-        <button className="paddle mr-2 mb-2">hello thre</button>
-        <button className="paddle mr-2 mb-2">hello thre</button>
-        <Paddle />
+        <Sounds />
         <div>
           <ButtonPost />
         </div>
