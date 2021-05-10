@@ -28,3 +28,16 @@ img {
     border-width: 1px;
     border-radius:45%;
 }
+#fade-in {
+    animation-name: fadeIn;
+    animation-duration: 500ms;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0%;
+    }
+    to {
+        opacity: 100%;
+    }
+
+}

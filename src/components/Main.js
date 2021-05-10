@@ -4,30 +4,27 @@ import "./css/main.css";
 import { auth } from "../firebase";
 import ButtonPost from "./posting/buttonPost";
 import { Component } from "react";
-import paddle from './posting/paddle'
-import {Sounds} from './PadSoundTest'
+import paddle from "./posting/paddle";
+import { Sounds } from "./PadSoundTest";
+import { Link } from "react-router-dom";
+import Recording from "./posting/Recording";
 
 class Paddle extends Component {
   constructor(props) {
-      super(props);
+    super(props);
   }
 
-  
   render() {
-    return <div>
-        <button className='paddle mr-2 mb-2' >hello there</button>
-    </div>;
+    return (
+      <div>
+        <button className="paddle mr-2 mb-2">hello there</button>
+      </div>
+    );
   }
 }
 
-
-
-
 export default function Main() {
-  let clicked = false;
-
   const [currentUser, setCurrentUser] = useState();
-
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -39,17 +36,22 @@ export default function Main() {
       <nav className="bg-info">
         <p className="text-right">
           {currentUser && (
-            <>
-              <img src={currentUser.photoURL} />
-              <p>{currentUser.displayName}</p>
-            </>
+            <div className="d-flex">
+              <Link className="" to="/dashboard">
+                <img src={currentUser.photoURL} />
+              </Link>
+
+              <Link className="text-dark mt-4 ml-2" to="/dashboard">
+                {currentUser.displayName}
+              </Link>
+            </div>
           )}
         </p>
       </nav>
-
       <div classname="paddlebox">
         <Sounds />
         <div>
+          <Recording />
           <ButtonPost />
         </div>
       </div>

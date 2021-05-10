@@ -38,13 +38,12 @@ export default function Login() {
 
 
   async function handleSubmit(e) {
-    e.preventDefault()
 
     try {
       setError("")
       setLoading(true)
-      await login(emailRef.current.value, passwordRef.current.value)
       history.push("/")
+      await login(emailRef.current.value, passwordRef.current.value)
     } catch {
       setError("Failed to log in")
     }

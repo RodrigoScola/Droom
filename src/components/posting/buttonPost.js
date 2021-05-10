@@ -29,7 +29,7 @@ export default class ButtonPost extends Component {
     if (this.state.clicked) {
       //visible
       return (
-        <div>
+        <div className="mt-2">
           <button
             onClick={this.toggleVisibility}
             className="btn-block btn btn-primary"
@@ -49,10 +49,10 @@ export default class ButtonPost extends Component {
           </form>
         </div>
       );
-      //invisible 
+      //invisible
     } else {
       return (
-        <div>
+        <div className="mt-2">
           <button
             onClick={this.toggleVisibility}
             className="btn-block btn btn-primary"
