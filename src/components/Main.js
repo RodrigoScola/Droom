@@ -7,7 +7,6 @@ import { Component } from "react";
 import paddle from "./posting/paddle";
 import { Sounds } from "./PadSoundTest";
 import { Link } from "react-router-dom";
-import Recording from "./posting/Recording";
 
 class Paddle extends Component {
   constructor(props) {
@@ -51,7 +50,6 @@ export default function Main() {
       <div classname="paddlebox">
         <Sounds />
         <div>
-          <Recording />
           <ButtonPost />
         </div>
       </div>

@@ -5,7 +5,7 @@ export default class ButtonPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      clicked: true,
+      clicked: false,
       tempTitle: "",
       setTitle: "",
     };
