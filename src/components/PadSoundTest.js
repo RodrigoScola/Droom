@@ -11,14 +11,15 @@ import { Howl, Howler } from "howler";
 import "./css/main.css";
 
 const audioClips = [
-  { sound: s1, label: "s1", color: "btn-danger paddle mr-2 mb-2" },
-  { sound: s2, label: "s2", color: "btn-warning paddle mr-2 mb-2" },
-  { sound: s3, label: "s3", color: "btn-success paddle mr-2 mb-2" },
-  { sound: s4, label: "s4", color: "btn-secondary paddle mr-2 mb-2" },
-  { sound: s5, label: "s5", color: "btn-info paddle mr-2 mb-2" },
-  { sound: s6, label: "s6", color: "btn-primary paddle mr-2 mb-2" },
+  {sound: s1,label :"s1",style: "btn-danger paddle mr-2 mb-2"},
+  {sound: s2,label: "s2",style: "btn-warning paddle mr-2 mb-2"},
+  {sound: s3, label: "s3",style: "btn-success paddle mr-2 mb-2"},
+  {sound: s4, lebel:"s4",style: "btn-secondary paddle mr-2 mb-2"},
+  {sound: s5,label:  "s5",style: "btn-info paddle mr-2 mb-2"},
+  {sound: s6,label: "s6",style: "btn-primary paddle mr-2 mb-2"},
 ];
 var music = [];
+var newArr = []
 
 export class Sounds extends Component {
   state = {
@@ -29,7 +30,7 @@ export class Sounds extends Component {
 
   startRecord = () => {
     this.setState({ ms: 1 });
-    this.myInterval = setInterval(() => {
+    setInterval(() => {
       const { ms } = this.state;
 
       if (ms > 0) {
@@ -48,31 +49,38 @@ export class Sounds extends Component {
   soundPlay = (src, index) => {
     const sound = new Howl({ src });
     sound.play();
-    if (this.state.ms > 0) {
-      music.push([audioClips[index].sound, " ", this.state.ms]);
-    }
+    // if (this.state.ms > 0) {
+    music.push([name: src,timer: this.state.ms, ' ']);
+    // }
   };
-  playMusic = (src) => {music.map((v,i)=>{
-   
-  })};
-
+  playmusic = () => {
+    music.map((v,i) => {
+      setInterval(() => {
+        
+        const sound = new Howl({src: [v.sound]})
+      sound.play()
+      }, 100);
+    })
+  };
+  stopmusic = () => {};
   renderButtons = () => {
     return audioClips.map((v, i) => {
       return (
         <button
-          className={v.color}
+          className={v.style}
           key={i}
           onClick={() => this.soundPlay(v.sound, i)}
         ></button>
       );
     });
   };
+
   render() {
     Howler.volume(1.0);
     return (
       <div>
         {this.renderButtons()}
-        
+
         <p>{this.state.ms}</p>
         <button
           onClick={() => {
@@ -88,13 +96,11 @@ export class Sounds extends Component {
         >
           stop recording
         </button>
-        <button onClick={this.playMusic(music)}>playmusic</button>
+        <button onClick={this.playmusic}>playmusic</button>
+        <button onClick={this.stopmusic}> stop music</button>
         <p>{this.state.duration}</p>
-        <p>
-          {music.map((v, i) => {
-            return <p>{v}</p>;
-          })}
-        </p>
+        <p>{music}</p>
+        <p>{newArr}</p>
       </div>
     );
   }
