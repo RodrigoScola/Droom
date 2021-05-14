@@ -33,7 +33,7 @@ export default function Main() {
   return (
     <div>
       <nav className="bg-info">
-        <p className="text-right">
+        <p className="justify-content-center">
           {currentUser && (
             <div className="d-flex">
               <Link className="" to="/dashboard">
@@ -47,7 +47,7 @@ export default function Main() {
           )}
         </p>
       </nav>
-      <div classname="paddlebox">
+      <div classname="align-content-center">
         <Sounds />
         <div>
           <ButtonPost />

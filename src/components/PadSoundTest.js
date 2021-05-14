@@ -11,26 +11,45 @@ import { Howl, Howler } from "howler";
 import "./css/main.css";
 
 const audioClips = [
-  {sound: s1,label :"s1",style: "btn-danger paddle mr-2 mb-2"},
-  {sound: s2,label: "s2",style: "btn-warning paddle mr-2 mb-2"},
-  {sound: s3, label: "s3",style: "btn-success paddle mr-2 mb-2"},
-  {sound: s4, lebel:"s4",style: "btn-secondary paddle mr-2 mb-2"},
-  {sound: s5,label:  "s5",style: "btn-info paddle mr-2 mb-2"},
-  {sound: s6,label: "s6",style: "btn-primary paddle mr-2 mb-2"},
+  { sound: s1, label: "s1", style: "btn-danger paddle mr-2 mb-2" },
+  { sound: s2, label: "s2", style: "btn-warning paddle mr-2 mb-2" },
+  { sound: s3, label: "s3", style: "btn-success paddle mr-2 mb-2" },
+  { sound: s4, lebel: "s4", style: "btn-secondary paddle mr-2 mb-2" },
+  { sound: s5, label: "s5", style: "btn-info paddle mr-2 mb-2" },
+  { sound: s6, label: "s6", style: "btn-primary paddle mr-2 mb-2" },
 ];
 var music = [];
-var newArr = []
+var newArr = [];
+var timing = 0;
+var baseInterval = 0;
+var prevTime = 0;
+var deltaTime = 0;
+var timingArr = []
+var recording = false;
+
+function musicProps(source,time) {
+  this.source = source
+  this.time = time
+}
 
 export class Sounds extends Component {
   state = {
-    ms: 1,
-    song: [],
+    ms: 0,
     duration: 0,
+    
   };
-
+  
   startRecord = () => {
+    timingArr = []
+    music = []
+    timing = 0
+    if (recording) {
+      clearInterval(this.timerInterval)
+    }
+    
     this.setState({ ms: 1 });
-    setInterval(() => {
+    recording = true;
+    this.timerInterval = setInterval(() => {
       const { ms } = this.state;
 
       if (ms > 0) {
@@ -38,29 +57,40 @@ export class Sounds extends Component {
           ms: ms + 1,
         }));
       }
-    }, 10);
+    }, 50);
   };
   stopRecord = () => {
-    clearInterval(this.myInterval);
+    clearInterval(this.timerInterval);
     music = [];
-    this.setState({ song: [], ms: 0, duration: this.state.ms });
+    recording = false;
+    this.setState({recording: false,  ms: 0, duration: this.state.ms });
   };
-
+  musicFunc = () => {
+    if (timing <= music.length - 1) {
+     
+      const sound = new Howl({ src: [music[timing][0]] });
+      sound.play();
+      let intervalo = baseInterval + 200;
+      this.musicFuncTimeout = setTimeout(this.musicFunc,timingArr[timing] * 36  );
+      timing++;
+    } else {
+      clearTimeout(this.musicFuncTimeout);
+     
+    }
+  };
   soundPlay = (src, index) => {
     const sound = new Howl({ src });
     sound.play();
-    // if (this.state.ms > 0) {
-    music.push([name: src,timer: this.state.ms, ' ']);
-    // }
+    if (this.state.ms > 0) {
+    deltaTime = this.state.ms - prevTime ;
+    if (deltaTime < 0) deltaTime =-deltaTime;
+    music.push([src, ' ']);
+    timingArr.push([deltaTime])
+    prevTime = this.state.ms;
+    }
   };
   playmusic = () => {
-    music.map((v,i) => {
-      setInterval(() => {
-        
-        const sound = new Howl({src: [v.sound]})
-      sound.play()
-      }, 100);
-    })
+    this.musicFuncTimeout = setTimeout(this.musicFunc,timingArr[timing] * 10);
   };
   stopmusic = () => {};
   renderButtons = () => {
@@ -78,11 +108,12 @@ export class Sounds extends Component {
   render() {
     Howler.volume(1.0);
     return (
-      <div>
+      <div className=''>
+        
         {this.renderButtons()}
 
-        <p>{this.state.ms}</p>
         <button
+        className='btn   btn-info mr-1'
           onClick={() => {
             this.startRecord();
           }}
@@ -90,17 +121,17 @@ export class Sounds extends Component {
           start recording
         </button>
         <button
+        className='btn btn-success mr-1 ml-1'
           onClick={() => {
             this.stopRecord();
           }}
         >
           stop recording
         </button>
-        <button onClick={this.playmusic}>playmusic</button>
-        <button onClick={this.stopmusic}> stop music</button>
-        <p>{this.state.duration}</p>
-        <p>{music}</p>
-        <p>{newArr}</p>
+        <button className='btn btn-primary'
+        onClick={this.playmusic}>playmusic</button>
+        <button
+        className='btn btn-secondary mr-1 ml-1' onClick={this.stopmusic}> stop music</button>
       </div>
     );
   }
