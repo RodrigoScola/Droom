@@ -1,64 +1,63 @@
 import React from "react";
 import { Component } from "react";
+import { Container } from "react-bootstrap";
+import { music } from "../PadSoundTest";
+import "../css/main.scss";
 
 export default class ButtonPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      clicked: false,
-      tempTitle: "",
-      setTitle: "",
+      title: "",
+      description: "",
     };
-    this.toggleVisibility = this.toggleVisibility.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  toggleVisibility() {
-    this.setState((state) => {
-      if (state.clicked == true) {
-        return { clicked: false };
-      } else {
-        return { clicked: true };
-      }
+  handleChange = (event) => {
+    this.setState({
+      title: event.target.value,
     });
-  }
-  handleSubmit(event) {
+  };
+
+  handleSubmit = (event) => {
     event.preventDefault();
-  }
+    this.setState({});
+  };
   render() {
-    if (this.state.clicked) {
-      //visible
-      return (
-        <div className="mt-2">
-          <button
-            onClick={this.toggleVisibility}
-            className="btn-block btn btn-primary"
-          >
-            post
-          </button>
-          <form onSubmit={this.handleSubmit}>
-            <input
-              type="text"
-              placeholder="defaultTitle"
-              className="form-control mt-4 mb-1"
-            />
-            <div></div>
-            <button type="submit" className="btn btn-block mt-2 btn-warning">
-              set title
-            </button>
-          </form>
-        </div>
-      );
-      //invisible
+    if (music.length < 4) {
+      return <div></div>;
     } else {
       return (
-        <div className="mt-2">
-          <button
-            onClick={this.toggleVisibility}
-            className="btn-block btn btn-primary"
-          >
-            post
-          </button>
+        <div className=' buttonStyle'>
+          <form onSubmit={this.handleSubmit}>
+            <input
+              class="mt-4 mb-2 pl-2 pr-2 input-group"
+              onChange={this.handleChange}
+              type="text"
+              placeholder="your title goes here"
+            />
+
+            <div>
+              <textarea
+                className="mt-4 mb-2 pl-2 pb-4 pr-2 input-group "
+                onChange={(event) => {
+                  this.setState({
+                    description: event.target.value,
+                  });
+                }}
+                placeholder="and the description goes here"
+              />
+            </div>
+            <Container>
+              <div className='text-center'>
+
+            <button  className="btn btn-success" type="submit">
+              Post Your Song
+            </button>
+              </div>
+            </Container>
+          </form>
+          <p>{this.state.title}</p>
+          <p>{(music, this.state.description)}</p>
         </div>
       );
     }

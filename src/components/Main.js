@@ -1,58 +1,53 @@
-import { render } from "@testing-library/react";
 import React, { useState, useEffect } from "react";
-import "./css/main.css";
+import "./css/main.scss";
 import { auth } from "../firebase";
-import ButtonPost from "./posting/buttonPost";
 import { Component } from "react";
-import paddle from "./posting/paddle";
 import { Sounds } from "./PadSoundTest";
-import { Link } from "react-router-dom";
-
-class Paddle extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        <button className="paddle mr-2 mb-2">hello there</button>
-      </div>
-    );
-  }
-}
+import { Link, useHistory } from "react-router-dom";
+import { Container } from "react-bootstrap";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function Main() {
-  const [currentUser, setCurrentUser] = useState();
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
-    });
-  }, []);
+  const [error, setError] = useState("");
+  const { currentUser, logout } = useAuth();
+  const history = useHistory();
+
+  async function handleLogout() {
+    setError("");
+
+    try {
+      await logout();
+      history.push("/login");
+    } catch {
+      setError("Failed to log out");
+    }
+  }
 
   return (
-    <div>
-      <nav className="bg-info">
-        <p className="justify-content-center">
-          {currentUser && (
-            <div className="d-flex">
-              <Link className="" to="/dashboard">
-                <img src={currentUser.photoURL} />
-              </Link>
+    <div className="welcome-section text-center ">
+      <Container className='droomLogo'>
+        <nav className="">
+          <p className="pb-3">
+            {currentUser && (
+              <div className="">
+                <Link className="text-dark " to="/dashboard">
+                  <img className="pr-3" id='profileimg' src={currentUser.photoURL} />
 
-              <Link className="text-dark mt-4 ml-2" to="/dashboard">
-                {currentUser.displayName}
-              </Link>
-            </div>
-          )}
-        </p>
-      </nav>
-      <div classname="align-content-center">
-        <Sounds />
-        <div>
-          <ButtonPost />
+                  <button className="btn  btn-primary">
+                    {currentUser.displayName}
+                  </button>
+                  
+                </Link>
+                <button onClick={handleLogout} className='btn ml-2 btn-info'>Logout</button>
+              </div>
+            )}
+          </p>
+        </nav>
+        <div classname="">
+          <Sounds />
+          <div></div>
         </div>
-      </div>
+      </Container>
     </div>
   );
 }

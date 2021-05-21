@@ -1,68 +1,72 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Form, Button, Card, Alert } from "react-bootstrap"
-import { useAuth } from "../contexts/AuthContext"
-import { Link, useHistory } from "react-router-dom"
-import {AuthWithGoogle} from './Signup'
-import firebase from 'firebase';
-import { auth } from "../firebase"
+import { useAuth } from "../contexts/AuthContext";
+import { Link, useHistory } from "react-router-dom";
+import firebase from "firebase";
+import { auth } from "../firebase";
+import "./css/login.scss";
+import logo from "./images/DroomLogo.png";
 
 export default function Login() {
-  const emailRef = useRef()
-  const passwordRef = useRef()
-  const { login } = useAuth()
-  const [error, setError] = useState("")
-  const [loading, setLoading] = useState(false)
-  const history = useHistory()
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const { login, logout } = useAuth();
+
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const history = useHistory();
 
   const provider = new firebase.auth.GoogleAuthProvider();
 
   const AuthWithGoogle = () => {
     try {
-      setError('')
+      
+      firebase.auth().signInWithPopup(provider);
+      setError("");
       setLoading(true);
-      firebase.auth().signInWithPopup(provider)
-      history.push('/')
+      setTimeout(() => {
+        
+        history.push("/");
+      }, 5000);
     } catch {
-      setError('could not complete google authentication')
+      setError("could not complete google authentication");
     }
-  }
-  const [currentUser,setCurrentUser] = useState();
+  };
+  const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
-    auth.onAuthStateChanged((user)=> {
-      setCurrentUser(user)
-    })
-  
-  }, [])
-
-
+    auth.onAuthStateChanged((user) => {
+      setCurrentUser(user);
+    });
+  }, []);
 
   async function handleSubmit(e) {
-
     try {
-      setError("")
-      setLoading(true)
-      history.push("/")
-      await login(emailRef.current.value, passwordRef.current.value)
+      setError("");
+      setLoading(true);
+      history.push("/");
+      await login(emailRef.current.value, passwordRef.current.value);
     } catch {
-      setError("Failed to log in")
+      setError("Failed to log in");
     }
 
-    setLoading(false)
+    setLoading(false);
   }
 
   return (
-    <>
-      <Card>
-        <Card.Body>
-        
-            <Button disabled={loading} onClick={AuthWithGoogle} className="btn btn-block btn-dark mt-1" type="sumbit">
-              <i className="bi bi-google"></i>
-            </Button>
-        
-        </Card.Body>
-      </Card>
-     
-    </>
-  )
+    <div class=" welcome-section ">
+      <div className="">
+        <img src={logo} alt="droom logo" class="droomLogo center" />
+        <h5 className="pb-2 text-center"> Entre com a sua conta</h5>
+        <button
+          disabled={loading}
+          onClick={AuthWithGoogle}
+          id="loginButton"
+          className="btn  mt-1"
+          type="sumbit"
+        >
+          <i className="bi bi-google"></i>
+        </button>
+      </div>
+    </div>
+  );
 }

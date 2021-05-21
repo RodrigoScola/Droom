@@ -11,8 +11,8 @@ import Test from "./test";
 
 function App() {
   return (
-    <Container className="d-flex align-content-center">
-      <div>
+    
+      <div className=''>
         <Router>
           <AuthProvider>
             <userContext>
@@ -30,7 +30,6 @@ function App() {
           </AuthProvider>
         </Router>
       </div>
-    </Container>
   );
 }
 

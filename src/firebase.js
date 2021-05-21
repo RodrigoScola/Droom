@@ -1,7 +1,8 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 
-const app = firebase.initializeApp({
+
+export const app = firebase.initializeApp({
   apiKey: "AIzaSyD7i-pnGNVeNDD9iAQyhoxUVHNN3TJ_EKY",
   authDomain: "droom---test.firebaseapp.com",
   databaseURL: "https://droom---test-default-rtdb.firebaseio.com",
@@ -12,4 +13,4 @@ const app = firebase.initializeApp({
 });
 
 export const auth = app.auth();
-export default app;
+export default firebase;
