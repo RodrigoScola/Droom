@@ -8,6 +8,7 @@ import PrivateRoute from "./PrivateRoute";
 import UpdateProfile from "./UpdateProfile";
 import mainPage from "./Main";
 import Test from "./test";
+import Feed from "./feed";
 
 function App() {
   return (
@@ -23,8 +24,9 @@ function App() {
                   component={UpdateProfile}
                 />
                 <PrivateRoute path="/dashboard" component={Dashboard} />
+                <PrivateRoute exact path="/" component={mainPage} />
                 <Route path="/login" component={Login} />
-                <Route path="/test" component={Test} />
+                <Route path="/feed" component={Feed} />
               </Switch>
             </userContext>
           </AuthProvider>
