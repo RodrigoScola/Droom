@@ -22,7 +22,9 @@ export default function Main() {
       setError("Failed to log out");
     }
   }
-
+async function handleFeed(){
+  history.push("/feed")
+}
   return (
     <div className="welcome-section text-center ">
       <Container className='droomLogo'>
@@ -39,6 +41,8 @@ export default function Main() {
                   
                 </Link>
                 <button onClick={handleLogout} className='btn ml-2 btn-info'>Logout</button>
+
+                <button onClick={handleFeed} className='btn ml-2 btn-secondary'>Feed</button>
               </div>
             )}
           </p>

@@ -26,7 +26,7 @@ var timing = 0;
 var baseInterval = 0;
 var prevTime = 0;
 var deltaTime = 0;
-var timingArr = [];
+export var timingArr = [];
 var recording = false;
 
 export class Sounds extends Component {
@@ -90,6 +90,7 @@ export class Sounds extends Component {
     this.musicFuncTimeout = setTimeout(this.musicFunc, timingArr[timing] * 10);
   };
   stopmusic = () => {};
+
   renderButtons = () => {
     return audioClips.map((v, i) => {
       return (

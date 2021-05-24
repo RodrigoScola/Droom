@@ -12,26 +12,22 @@ import Feed from "./feed";
 
 function App() {
   return (
-    
-      <div className=''>
-        <Router>
-          <AuthProvider>
-            <userContext>
-              <Switch>
-                <PrivateRoute exact path="/" component={mainPage} />
-                <PrivateRoute
-                  path="/update-profile"
-                  component={UpdateProfile}
-                />
-                <PrivateRoute path="/dashboard" component={Dashboard} />
-                <PrivateRoute exact path="/" component={mainPage} />
-                <Route path="/login" component={Login} />
-                <Route path="/feed" component={Feed} />
-              </Switch>
-            </userContext>
-          </AuthProvider>
-        </Router>
-      </div>
+    <div className="">
+      <Router>
+        <AuthProvider>
+          <userContext>
+            <Switch>
+              <PrivateRoute exact path="/" component={mainPage} />
+              <PrivateRoute path="/update-profile" component={UpdateProfile} />
+              <PrivateRoute path="/dashboard" component={Dashboard} />
+              <PrivateRoute exact path="/test" component={Test} />
+              <Route path="/login" component={Login} />
+              <Route path="/feed" component={Feed} />
+            </Switch>
+          </userContext>
+        </AuthProvider>
+      </Router>
+    </div>
   );
 }
 

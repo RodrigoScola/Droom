@@ -3,14 +3,17 @@ import { Component } from "react";
 import { Container } from "react-bootstrap";
 import "../css/main.scss";
 import firebase from "F:/code/droon/src/firebase";
-import { music } from "../PadSoundTest";
+import { music, timingArr } from "../PadSoundTest";
 import { useAuth } from 'F:/code/droon/src/contexts/AuthContext'
 
 var titleVar = "";
 var sendedVar;
 
 
-
+export const Usernamename = () => {
+  const { currentUser, logout } = useAuth()
+  return <div>{currentUser.displayName}</div>
+}
 
 const handleChange = (event) => {
   titleVar = event.target.value;
@@ -39,7 +42,9 @@ export default function ButtonPost (){
       string: sendedVar,
       song : music.toString(),
       uid : currentUser.uid,
-      photoUrl : currentUser.photoURL
+      photoUrl : currentUser.photoURL,
+      user : currentUser.displayName,
+      timerArr: timingArr.toString()
     });
 
 };
