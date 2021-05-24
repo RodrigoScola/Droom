@@ -24,7 +24,40 @@ export class Sounds extends Component {
     super(props);
   }
 
+<<<<<<< Updated upstream
   soundPlay = (src) => {
+=======
+      if (ms > 0) {
+        this.setState(({ ms }) => ({
+          ms: ms + 1,
+        }));
+      }
+    }, 50);
+  };
+  stopRecord = () => {
+    clearInterval(this.timerInterval);
+    music = [];
+    recording = false;
+    this.setState({ recording: false, ms: 0, duration: this.state.ms });
+  };
+  musicFunc = () => {
+    if (timing <= music.length - 1) {
+      const sound = new Howl({ src: [music[timing][0]] });
+      sound.play();
+      let intervalo = baseInterval + 200;
+      this.musicFuncTimeout = setTimeout(
+        this.musicFunc,
+        timingArr[timing] * 36
+      );
+      timing++;
+    } else if (timing == music.length) {
+      timing = 0;
+    } else if (timing > music.length) {
+      clearTimeout(this.musicFuncTimeout);
+    }
+  };
+  soundPlay = (src, index) => {
+>>>>>>> Stashed changes
     const sound = new Howl({ src });
     sound.play();
   };
