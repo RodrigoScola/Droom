@@ -20,8 +20,14 @@
 }
 
 .droomLogo {
-@include center(center);
-padding-top: 10%; 
+  padding-top: 25%;
+  animation-name: fade-in;
+  animation-duration: 500ms;
+  justify-content: center;
+  height: 60%;
+  max-height: 100%;
+  display: flex;
+  @include center(left);
 }
 #loginButton {
   width: 200px;
