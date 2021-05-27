@@ -32,7 +32,7 @@ export default function ButtonPost (){
   }, [])
 
   const handleSubmit = async (event) => {
-    
+  
 
     sendedVar = titleVar;
     event.preventDefault();
@@ -40,11 +40,11 @@ export default function ButtonPost (){
     const ref = await db.collection("MyPosts");
     ref.add({
       string: sendedVar,
+      song : music.toString(),
       uid : currentUser.uid,
       photoUrl : currentUser.photoURL,
       user : currentUser.displayName,
-      song: music,
-      timerArr: timingArr
+      timerArr: timingArr.toString()
     });
 
 };
@@ -58,7 +58,6 @@ export default function ButtonPost (){
               onChange={handleChange}
               type="text"
               placeholder="your title goes here"
-              required
             />
 
             <div>

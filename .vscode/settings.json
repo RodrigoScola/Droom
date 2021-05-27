@@ -1,7 +1,2 @@
 {
-    "files.autoSave": "afterDelay",
-    "vim.useCtrlKeys": false,
-    "editor.formatOnSave": true,
-    "editor.formatOnPaste": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
 }

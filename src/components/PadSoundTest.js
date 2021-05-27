@@ -12,9 +12,6 @@ import "./css/main.scss";
 import ButtonPost from "./posting/buttonPost";
 import { Container } from "react-bootstrap";
 
-
-export const audio = [s1,s2,s3,s4,s5,s6];
-
 const audioClips = [
   { sound: s1, label: "s1", style: "btn-light paddle mr-2 mb-2" },
   { sound: s2, label: "s2", style: "btn-warning paddle mr-2 mb-2" },
@@ -66,7 +63,7 @@ export class Sounds extends Component {
   };
   musicFunc = () => {
     if (timing <= music.length - 1) {
-      const sound = new Howl({ src: [music[timing]] });
+      const sound = new Howl({ src: [music[timing][0]] });
       sound.play();
       let intervalo = baseInterval + 200;
       this.musicFuncTimeout = setTimeout(
@@ -84,8 +81,8 @@ export class Sounds extends Component {
     if (this.state.ms > 0) {
       deltaTime = this.state.ms - prevTime;
       if (deltaTime < 0) deltaTime = -deltaTime;
-      music.push(src);
-      timingArr.push(deltaTime);
+      music.push([src, " "]);
+      timingArr.push([deltaTime]);
       prevTime = this.state.ms;
     }
   };
