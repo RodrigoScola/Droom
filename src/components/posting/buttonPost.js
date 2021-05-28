@@ -1,7 +1,6 @@
 import React from "react";
 import { Component } from "react";
 
-<<<<<<< Updated upstream
 export default class ButtonPost extends Component {
   constructor(props) {
     super(props);
@@ -9,28 +8,6 @@ export default class ButtonPost extends Component {
       clicked: true,
       tempTitle: "",
       setTitle: "",
-=======
-var titleVar = "";
-var sendedVar;
-
-
-export const Usernamename = () => {
-  const { currentUser, logout } = useAuth()
-  return <div>{currentUser.displayName}</div>
-}
-
-const handleChange = (event) => {
-  titleVar = event.target.value;
-}
-export default function ButtonPost (){
-  const [name, setName] = useState([]);
-  const { currentUser, logout } = useAuth()
-  useEffect(() => {
-    const fetchData = async () => {
-      const db = firebase.firestore();
-      const data = await db.collection("MyPosts").get();
-      setName(data.docs.map(doc => (doc.data())));
->>>>>>> Stashed changes
     };
     this.toggleVisibility = this.toggleVisibility.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

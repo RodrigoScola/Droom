@@ -22,6 +22,7 @@ const audioClips = [
   { sound: s5, label: "s5", color: "btn-primary" },
   { sound: s6, label: "s6", color: "btn-primary" },
 ];
+<<<<<<< HEAD
 export const Sounds = () => {
   soundPlay = (src) => {
     this.timerInterval = setInterval (() =>{
@@ -54,6 +55,20 @@ export const Sounds = () => {
       clearTimeout(this.musicFuncTimeout);
     }
   };
+=======
+
+export class Sounds extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  soundPlay = (src) => {
+    const sound = new Howl({ src });
+    sound.play();
+  };
+
+  render() {
+>>>>>>> parent of 809ee18 (nre)
     Howler.volume(1.0);
     return (
       <div>

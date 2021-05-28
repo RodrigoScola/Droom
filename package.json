@@ -8,7 +8,6 @@
     "@testing-library/user-event": "^7.2.1",
     "bootstrap": "^4.5.2",
     "bootstrap-icons": "^1.4.1",
-    "caniuse-lite": "^1.0.30001228",
     "firebase": "^7.20.0",
     "howler": "^2.2.1",
     "react": "^16.13.1",

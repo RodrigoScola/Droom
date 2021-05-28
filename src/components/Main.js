@@ -38,6 +38,7 @@ export default function Main() {
 
   return (
     <div>
+<<<<<<< HEAD
     <div className="welcome-section text-center ">
       <Container className='droomLogo'>
         <nav className="">
@@ -63,6 +64,23 @@ export default function Main() {
           <Sounds />
           <div></div>
 >>>>>>> Stashed changes
+=======
+      <nav className="bg-info">
+        <p className="text-right">
+          {currentUser && (
+            <>
+              <img src={currentUser.photoURL} />
+              <p>{currentUser.displayName}</p>
+            </>
+          )}
+        </p>
+      </nav>
+
+      <div classname="paddlebox">
+        <Sounds />
+        <div>
+          <ButtonPost />
+>>>>>>> parent of 809ee18 (nre)
         </div>
       </div>
       <div><button onClick={auth.signOut()}>logout </button><button onClick={auth.signInWithPopup()}></button></div>
