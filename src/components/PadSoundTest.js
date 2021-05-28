@@ -10,6 +10,10 @@ import s7 from "./sounds/s7.mp3";
 import { Howl, Howler } from "howler";
 import "./css/main.css";
 
+var ms = 0;
+var music = [];
+
+
 const audioClips = [
   { sound: s1, label: "s1", color: "btn-danger" },
   { sound: s2, label: "s2", color: "btn-warning" },
@@ -18,15 +22,9 @@ const audioClips = [
   { sound: s5, label: "s5", color: "btn-primary" },
   { sound: s6, label: "s6", color: "btn-primary" },
 ];
-
-export class Sounds extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-<<<<<<< Updated upstream
+export const Sounds = () => {
   soundPlay = (src) => {
-=======
+    this.timerInterval = setInterval (() =>{
       if (ms > 0) {
         this.setState(({ ms }) => ({
           ms: ms + 1,
@@ -56,13 +54,6 @@ export class Sounds extends Component {
       clearTimeout(this.musicFuncTimeout);
     }
   };
-  soundPlay = (src, index) => {
->>>>>>> Stashed changes
-    const sound = new Howl({ src });
-    sound.play();
-  };
-
-  render() {
     Howler.volume(1.0);
     return (
       <div>
@@ -111,7 +102,6 @@ export class Sounds extends Component {
       </div>
     );
   }
-}
 
 export default function PadSoundTest() {
   return (

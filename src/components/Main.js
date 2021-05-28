@@ -37,24 +37,7 @@ export default function Main() {
   }, []);
 
   return (
-<<<<<<< Updated upstream
     <div>
-      <nav className="bg-info">
-        <p className="text-right">
-          {currentUser && (
-            <>
-              <img src={currentUser.photoURL} />
-              <p>{currentUser.displayName}</p>
-            </>
-          )}
-        </p>
-      </nav>
-
-      <div classname="paddlebox">
-        <Sounds />
-        <div>
-          <ButtonPost />
-=======
     <div className="welcome-section text-center ">
       <Container className='droomLogo'>
         <nav className="">
