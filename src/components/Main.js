@@ -1,44 +1,32 @@
-import { render } from "@testing-library/react";
 import React, { useState, useEffect } from "react";
-import "./css/main.css";
+import "./css/main.scss";
 import { auth } from "../firebase";
-import ButtonPost from "./posting/buttonPost";
 import { Component } from "react";
-
-import paddle from "./posting/paddle";
-import {Sounds} from "./PadSoundTest";
-import {Auth} from '../firebase'
-
-class Paddle extends Component {
-  constructor(props) {
-      super(props);
-  }
-
-  
-  render() {
-    return <div>
-        <button className='paddle mr-2 mb-2' >hello there</button>
-    </div>;
-  }
-}
-
-
+import { Sounds } from "./PadSoundTest";
+import { Link, useHistory } from "react-router-dom";
+import { Container } from "react-bootstrap";
+import { useAuth } from "../contexts/AuthContext";
 
 
 export default function Main() {
-  let clicked = false;
+  const [error, setError] = useState("");
+  const { currentUser, logout } = useAuth();
+  const history = useHistory();
 
-  const [currentUser, setCurrentUser] = useState();
+  async function handleLogout() {
+    setError("");
 
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
-    });
-  }, []);
-
+    try {
+      await logout();
+      history.push("/login");
+    } catch {
+      setError("Failed to log out");
+    }
+  }
+async function handleFeed(){
+  history.push("/feed")
+}
   return (
-    <div>
-<<<<<<< HEAD
     <div className="welcome-section text-center ">
       <Container className='droomLogo'>
         <nav className="">
@@ -62,28 +50,12 @@ export default function Main() {
         </nav>
         <div classname="">
           <Sounds />
-          <div></div>
->>>>>>> Stashed changes
-=======
-      <nav className="bg-info">
-        <p className="text-right">
-          {currentUser && (
-            <>
-              <img src={currentUser.photoURL} />
-              <p>{currentUser.displayName}</p>
-            </>
-          )}
-        </p>
-      </nav>
+          <div>
+            
+          </div>
 
-      <div classname="paddlebox">
-        <Sounds />
-        <div>
-          <ButtonPost />
->>>>>>> parent of 809ee18 (nre)
         </div>
-      </div>
-      <div><button onClick={auth.signOut()}>logout </button><button onClick={auth.signInWithPopup()}></button></div>
+      </Container>
     </div>
   );
 }
