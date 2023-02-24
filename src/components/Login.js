@@ -18,6 +18,8 @@ export default function Login() {
 	const provider = new GoogleAuthProvider();
 
 	const AuthWithGoogle = () => {
+		provider.addScope("https://drooom-csdbi1wou-rodrigoscola.vercel.app/login");
+
 		const auth = getAuth();
 
 		try {
@@ -27,7 +29,8 @@ export default function Login() {
 			setTimeout(() => {
 				history.push("/");
 			}, 5000);
-		} catch {
+		} catch (err) {
+			console.log(err);
 			setError("could not complete google authentication");
 		}
 	};
