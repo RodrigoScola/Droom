@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Button, Flex, Image } from "@chakra-ui/react";
 import { useAuth } from "../contexts/AuthContext";
-import DroomLogo from "./images/droom.png";
+import DroomLogo from "../images/droom.png";
 export const Nav = () => {
 	const [error, setError] = useState("");
 	const { currentUser, logout } = useAuth();

@@ -8,7 +8,7 @@ export const PostCard = ({ createdAt, title, subtitle = "", user, music }) => {
 	const { playMusic } = useMusic();
 	const content = useMemo(() => {
 		if (subtitle.length < 260) return subtitle;
-		return subtitle.substring(0, Math.min(subtitle.length - 1, 200)) + "...";
+		return subtitle.substring(0, Math.min(subtitle.length - 1, 260)) + "...";
 	}, [subtitle]);
 	return (
 		<Card p={2} gap={2} my={2} style={{ textTransform: "capitalize" }}>
