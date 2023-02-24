@@ -7,7 +7,7 @@ import { useMusic } from "../hooks/useMusic";
 export const PostCard = ({ createdAt, title, subtitle = "", user, music }) => {
 	const { playMusic } = useMusic();
 	const content = useMemo(() => {
-		if (subtitle.length < 200) return subtitle;
+		if (subtitle.length < 260) return subtitle;
 		return subtitle.substring(0, Math.min(subtitle.length - 1, 200)) + "...";
 	}, [subtitle]);
 	return (
