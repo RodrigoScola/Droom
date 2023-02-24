@@ -1,7 +1,7 @@
+import React, { Component, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Button, Flex, Image, Avatar, Card } from "@chakra-ui/react";
 import { useAuth } from "../contexts/AuthContext";
-import { useState } from "react";
 import DroomLogo from "./images/droom.png";
 import { LogoutButton } from "./Buttons/LogoutButton";
 export const Nav = () => {

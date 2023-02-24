@@ -1,3 +1,4 @@
+import React, { Component } from "react";
 import { Card, Box, Button, Heading, Flex, Text, Avatar, Divider } from "@chakra-ui/react";
 import { timeDifference } from "../utils";
 import { useMemo } from "react";

@@ -1,5 +1,5 @@
 import { useAuth } from "../contexts/AuthContext";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { auth } from "../firebase";
 import { Avatar, Box, Button, Flex, Heading } from "@chakra-ui/react";
