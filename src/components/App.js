@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AuthProvider } from "../contexts/AuthContext";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Dashboard from "./Dashboard";
@@ -8,8 +8,17 @@ import UpdateProfile from "./UpdateProfile";
 import mainPage from "./Main";
 import Test from "./test";
 import Feed from "./feed";
+import { useColorMode } from "@chakra-ui/react";
 
 function App() {
+	const { colorMode, toggleColorMode } = useColorMode();
+
+	useEffect(() => {
+		if (colorMode == "light") {
+			toggleColorMode();
+		}
+	}, [colorMode]);
+
 	return (
 		<div className="">
 			<Router>
