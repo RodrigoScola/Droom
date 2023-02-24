@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { auth } from "../firebase";
+import { auth } from "../components/firebase";
 import { useFireship } from "../hooks/useFireship";
 import { useMusic } from "../hooks/useMusic";
 

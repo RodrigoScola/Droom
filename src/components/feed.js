@@ -1,12 +1,9 @@
-import firebase from "../firebase";
 import React, { useState, useEffect } from "react";
-import { musicAudio } from "./PadSoundTest";
-import { Howl } from "howler";
 import { Box, Heading, Image } from "@chakra-ui/react";
 import { useFireship } from "../hooks/useFireship";
-import { PostCard } from "./posting/PostCard";
+import { PostCard } from "../components/posting/PostCard";
 import { useMusic } from "../hooks/useMusic";
-import { Nav } from "./Nav";
+import { Nav } from "../components/Nav";
 
 const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 

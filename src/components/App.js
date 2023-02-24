@@ -5,14 +5,14 @@ import Dashboard from "./Dashboard";
 import Login from "./Login";
 import PrivateRoute from "./PrivateRoute";
 import UpdateProfile from "./UpdateProfile";
-import mainPage from "./Main";
-import Test from "./test";
+import MainPage from "./Main";
 import Feed from "./feed";
 import { useColorMode } from "@chakra-ui/react";
 
 function App() {
 	const { colorMode, toggleColorMode } = useColorMode();
 
+	// in production initialColorMode does not work
 	useEffect(() => {
 		if (colorMode == "light") {
 			toggleColorMode();
@@ -24,10 +24,9 @@ function App() {
 			<Router>
 				<AuthProvider>
 					<Switch>
-						<PrivateRoute exact path="/" component={mainPage} />
+						<PrivateRoute exact path="/" component={MainPage} />
 						<PrivateRoute path="/update-profile" component={UpdateProfile} />
 						<PrivateRoute path="/dashboard" component={Dashboard} />
-						<PrivateRoute exact path="/test" component={Test} />
 						<Route path="/login" component={Login} />
 						<Route path="/feed" component={Feed} />
 					</Switch>

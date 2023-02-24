@@ -1,12 +1,11 @@
 import { useAuth } from "../contexts/AuthContext";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { auth } from "../firebase";
-import { Avatar, Box, Button, Flex, Heading } from "@chakra-ui/react";
+import { Avatar, Box, Flex, Heading } from "@chakra-ui/react";
 import { useFireship } from "../hooks/useFireship";
-import { PostCard } from "./posting/PostCard";
-import { Nav } from "./Nav";
-import { LogoutButton } from "./Buttons/LogoutButton";
+import { PostCard } from "../components/posting/PostCard";
+import { LogoutButton } from "../components/Buttons/LogoutButton";
+
 export default function Dashboard() {
 	const [error, setError] = useState("");
 	const [posts, setPosts] = useState([]);

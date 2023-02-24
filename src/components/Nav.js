@@ -1,9 +1,8 @@
-import React, { Component, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { Button, Flex, Image, Avatar, Card } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { Button, Flex, Image } from "@chakra-ui/react";
 import { useAuth } from "../contexts/AuthContext";
 import DroomLogo from "./images/droom.png";
-import { LogoutButton } from "./Buttons/LogoutButton";
 export const Nav = () => {
 	const [error, setError] = useState("");
 	const { currentUser, logout } = useAuth();
@@ -19,10 +18,11 @@ export const Nav = () => {
 			setError("Failed to log out");
 		}
 	}
+
 	async function handleFeed() {
 		history.push("/feed");
 	}
-	//history push to dashboard
+
 	return (
 		<Flex background={"cyan.500"} py={2}>
 			<Flex alignItems={"center"} w={"90%"} justifyContent={"space-between"} m={"auto"} maxW={"1500px"}>

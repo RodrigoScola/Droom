@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
-import app, { auth } from "../firebase";
+import app, { auth } from "./firebase";
 import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
 import logo from "./images/droom.png";
 import { Flex, Box, Image, Button } from "@chakra-ui/react";
