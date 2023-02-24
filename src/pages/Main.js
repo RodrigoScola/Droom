@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Card, Button, FormControl, Input, FormLabel, Textarea, Heading, Box } from "@chakra-ui/react";
+import { Paddle } from "../components/paddle";
 import { useHistory } from "react-router-dom";
 import { useFireship } from "../hooks/useFireship";
 import { useMusic } from "../hooks/useMusic";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function Main() {
 	const { currentUser } = useAuth();
@@ -63,7 +65,7 @@ export default function Main() {
 	};
 
 	return (
-		<Card p={4} shadow={"xl"}>
+		<Card p={4} shadow={"xl"} w={"50%"} m={"auto"} mt={4}>
 			<Heading textAlign={"center"}>Create a new Song!</Heading>
 			<Box wrap={"wrap"}>
 				<Flex gap={3} py={3} justifyContent={"center"}>

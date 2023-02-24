@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { Avatar, Box, Flex, Heading } from "@chakra-ui/react";
 import { useFireship } from "../hooks/useFireship";
-import { PostCard } from "../components/posting/PostCard";
+import { PostCard } from "../components/PostCard";
 import { LogoutButton } from "../components/Buttons/LogoutButton";
 
 export default function Dashboard() {

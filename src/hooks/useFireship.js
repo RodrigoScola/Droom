@@ -2,7 +2,7 @@ import { query, addDoc, collection, doc, getDoc, getDocs, getFirestore, updateDo
 import { useEffect } from "react";
 import { useState } from "react";
 
-import app from "../components/firebase";
+import app from "../firebase";
 export const useFireship = () => {
 	const [db, setDb] = useState(getFirestore(app));
 	const createPost = async (data, collectionName = "music") => {

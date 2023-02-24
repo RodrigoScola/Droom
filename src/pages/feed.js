@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Heading, Image } from "@chakra-ui/react";
 import { useFireship } from "../hooks/useFireship";
-import { PostCard } from "../components/posting/PostCard";
+import { PostCard } from "../components/PostCard";
 import { useMusic } from "../hooks/useMusic";
 import { Nav } from "../components/Nav";
 
