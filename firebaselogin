@@ -1,5 +1,0 @@
-context
-
-if you want the user to go to a specific part of your site
-    import {Link} from 'react-router-dom'
-    <Link to='/signin' />

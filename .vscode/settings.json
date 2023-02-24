@@ -1,2 +1,4 @@
 {
+	"editor.foldingImportsByDefault": true,
+	"javascript.suggest.autoImports": true
 }
