@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const app = initializeApp({
-	apiKey: "AIzaSyD7i-pnGNVeNDD9iAQyhoxUVHNN3TJ_EKY",
+	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
 	authDomain: "droom---test.firebaseapp.com",
 	databaseURL: "https://droom---test-default-rtdb.firebaseio.com",
 	projectId: "droom---test",

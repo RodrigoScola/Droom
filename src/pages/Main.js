@@ -137,6 +137,7 @@ export default function Main() {
 					) : null}
 				</Flex>
 			</Box>
+			<title>this </title>
 			<Box pt={1} maxW={"1000px"} className="">
 				<form onSubmit={createMusic}>
 					<Box p={4}>
