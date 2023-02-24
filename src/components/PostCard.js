@@ -7,12 +7,17 @@ import { useMusic } from "../hooks/useMusic";
 export const PostCard = ({ createdAt, title, subtitle = "", user, music }) => {
 	const { playMusic } = useMusic();
 	const content = useMemo(() => {
+		if (subtitle.length < 200) return subtitle;
 		return subtitle.substring(0, Math.min(subtitle.length - 1, 200)) + "...";
 	}, [subtitle]);
 	return (
 		<Card p={2} gap={2} my={2} style={{ textTransform: "capitalize" }}>
 			<Flex gap={2}>
-				<Avatar src={user?.photoUrl} alt={`profile image for ${user.displayName}`} />
+				<Avatar
+					name={user.displayName}
+					src={user?.photoUrl}
+					alt={`profile image for ${user.displayName}`}
+				/>
 				<Flex gap={2} alignItems={"center"}>
 					<Heading autoCapitalize size={"md"}>
 						{user.displayName}
