@@ -1,5 +1,16 @@
 import React, { useState } from "react";
-import { Flex, Card, Button, FormControl, Input, FormLabel, Textarea, Heading, Box } from "@chakra-ui/react";
+import {
+	FormHelperText,
+	Flex,
+	Card,
+	Button,
+	FormControl,
+	Input,
+	FormLabel,
+	Textarea,
+	Heading,
+	Box,
+} from "@chakra-ui/react";
 import { Paddle } from "../components/paddle";
 import { useHistory } from "react-router-dom";
 import { useFireship } from "../hooks/useFireship";
@@ -135,9 +146,10 @@ export default function Main() {
 								onChange={(e) => setInfo((curr) => ({ ...curr, title: e.target.value }))}
 								className="form-control"
 								value={title}
-								placeholder="qual é o título da música?"
+								placeholder="My new Title"
 								required
 							/>
+							<FormHelperText>What do you want to call the new song?</FormHelperText>
 						</FormControl>
 
 						<FormControl>
